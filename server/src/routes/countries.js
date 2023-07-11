@@ -1,5 +1,10 @@
 const { Router } = require("express");
-const {getApiData, getCountryByName, postActivity, getActivities, getCountryById}=require('../controllers/countries')
+const {getApiData, getApiDataContinents}=require('../controllers/getCountries');
+const {getActivities}=require('../controllers/getActivities');
+const {getCountryById}=require('../controllers/getCountrieById');
+const {getCountryByName}=require('../controllers/getCountrieByname');
+const {postActivity}=require('../controllers/postActivity');
+
 
 const router = Router();
 
@@ -12,6 +17,17 @@ router.get('/', async(req,res)=>{
     res.status(500).send('Error al cargar los datos.');
   }
 });
+
+router.get('/continent', async(req, res)=>{
+  try {
+    const {continent} = req.query;
+    const countries = await getApiDataContinents(continent);
+    res.status(200).send(countries);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error al cargar los datos.');
+  }
+})
 
 router.get('/search', async (req, res) => {
   try {
@@ -35,6 +51,7 @@ router.get('/detail', async(req, res)=>{
     const country = await getCountryById(id);
     res.status(200).send(country)
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 })
@@ -55,7 +72,8 @@ router.get('/activities', async (req, res)=>{
     const list = await getActivities();
     res.status(200).send(list);
   } catch (error) {
-    
+    console.log(error);
+    res.status(500).send('Error al cargar los datos.');
   }
 });
 

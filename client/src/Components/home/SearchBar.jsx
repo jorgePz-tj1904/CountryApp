@@ -10,11 +10,17 @@ const SearchBar=({onSearch})=>{
         onSearch(name);
         setName('');
     }
+    const handleKeyDown =(event)=>{
+        if(event.key == 'Enter'){
+           onSearch(name);
+           setId('');
+        }
+     }
 
     return(
         <>
         <div>
-            <input onChange={handleChange} value={name} type="text"/>
+            <input onChange={handleChange} onKeyDown={handleKeyDown} value={name} type="text"/>
             <button onClick={handleSearch}>buscar</button>
         </div>
         </>

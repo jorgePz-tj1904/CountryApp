@@ -4,10 +4,11 @@ const Cards=({country})=>{
     return(
         <>
         <div>
-        {country.map(({id,name}) => (
+        {country.map(({id,name,flags}) => (
         <Card 
           id={id}
           name={name}
+          flags={flags}
         />
       ))}
         </div>

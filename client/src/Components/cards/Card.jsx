@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Card = ({ id, name }) => {
+const Card = ({ id, name, flags }) => {
   return (
     <div>
-      <h3>Country ID: {id}</h3>
+      <img src={flags} alt={name} />
       <p>Country Name: {name}</p>
       <NavLink to={`/detail/${id}`}>detalles</NavLink>
     </div>
