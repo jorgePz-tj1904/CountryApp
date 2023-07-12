@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './Home.module.css'
 
 const SearchBar=({onSearch})=>{
     const [name, setName] = useState('');
@@ -20,8 +21,8 @@ const SearchBar=({onSearch})=>{
     return(
         <>
         <div>
-            <input onChange={handleChange} onKeyDown={handleKeyDown} value={name} type="text"/>
-            <button onClick={handleSearch}>buscar</button>
+            <input onChange={handleChange} onKeyDown={handleKeyDown} value={name} type="text" placeholder="search countries here"/>
+            <button id={styles.buttonSearch} onClick={handleSearch}><b>Search</b></button>
         </div>
         </>
     )

@@ -1,0 +1,22 @@
+.conteiner{
+    background-color: white;
+    padding: 15px;
+    margin-top: 10px;
+    max-width: 200px;
+    height: 220px;
+}
+.conteiner img{
+    box-shadow: 0px 0px 41px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 41px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 41px 0px rgba(0,0,0,0.75);
+}
+#detalles{
+    position: absolute;
+    text-decoration: none;
+    margin-top: 10px;
+    color: white;
+    background-color: rgb(39, 40, 108);
+    padding: 5px;
+    font-size: 20px;
+    margin-left: -15%;
+}

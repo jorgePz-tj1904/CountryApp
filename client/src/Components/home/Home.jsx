@@ -4,9 +4,18 @@ import axios from 'axios';
 import Cards from "../cards/Cards";
 import SearchBar from "./SearchBar";
 
+import styles from './Home.module.css'
+
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [continents, setContinents] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage] = useState(10);
+
+
+  const indexOfLastCountry = currentPage * perPage;
+  const indexOfFirstCountry = indexOfLastCountry - perPage;
+  const countriesToShow = countries.slice(indexOfFirstCountry, indexOfLastCountry);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,33 +87,48 @@ const Home = () => {
       console.log(error);
     }
   };
+  const totalPages = Math.ceil(countries.length / perPage);
+
+  const nextPage=()=>{
+    if(currentPage < totalPages){
+        setCurrentPage(currentPage + 1);
+    }
+  };
+  const prevPage=()=>{
+    if(currentPage > 1){
+        setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <>
-      <div>
-        <h1>Esto es el home</h1>
+      <div className={styles.conteiner}>
+        <NavLink to='/home'><img src="https://i.ibb.co/rm30PZt/My-project-1-1.png" width={200}/></NavLink>
         <SearchBar onSearch={onSearch} />
-        <NavLink to='/create-activity'>Crear actividad turística</NavLink><br />
-        <NavLink to='/activities'>Lista de actividades</NavLink>
-        <p>anqanakjdnwa anashe Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias nulla repudiandae dolores fugit autem minus id adipisci ratione tempore rerum, numquam perferendis obcaecati odio molestiae voluptatibus, illum, quam qui fugiat.</p>
+        <NavLink className={styles.buttonActivities} id={styles.crearActividad} to='/create-activity'>Create tourist activity</NavLink><br />
+        <NavLink className={styles.buttonActivities} id={styles.listaActividades} to='/activities'>Activities list</NavLink>
+        <p id={styles.parrafo}>Search, explore, learn about the capitals, sub-regions and continents.</p>
 
-        <select onChange={orderHandler}>
-          <option selected disabled hidden>Selecciona una opción</option>
-          <option value="ASC-alf">Ordenar alfabéticamente ASC</option>
-          <option value="DESC-alf">Ordenar alfabéticamente DESC</option>
-          <option value="ASC-pop">Ordenar por población ASC</option>
-          <option value="DESC-pop">Ordenar por población DESC</option>
+        <select className={styles.orderSelect}  onChange={orderHandler}>
+          <option selected disabled hidden>Order</option>
+          <option value="ASC-alf">Order alphabetically ASC</option>
+          <option value="DESC-alf">Order alphabetically DESC</option>
+          <option value="ASC-pop">Sort by population ASC</option>
+          <option value="DESC-pop">Sort by population DESC</option>
         </select>
 
-        <select onChange={continentsHandler}>
-          <option selected disabled hidden>Filtrar por continente</option>
+        <select className={styles.orderSelect} onChange={continentsHandler}>
+          <option selected disabled hidden>Filter by continent</option>
           {continents.map((continent) => (
             <option key={continent} value={continent}>{continent}</option>
           ))}
         </select>
-
-        <NavLink to='/'>Volver</NavLink>
-        <Cards country={countries} />
+        <Cards country={countriesToShow}/>
+        <div>
+          <button className={styles.buttonsPages} onClick={prevPage} disabled={currentPage === 1}>Página anterior</button>
+          <h1 id={styles.page}>{currentPage}</h1>
+          <button className={styles.buttonsPages} onClick={nextPage} disabled={currentPage === Math.ceil(countries.length / perPage)}>Página siguiente</button>
+        </div>
       </div>
     </>
   );

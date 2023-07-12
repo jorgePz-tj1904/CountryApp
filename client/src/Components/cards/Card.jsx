@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styles from './Card.module.css'
 
 const Card = ({ id, name, flags }) => {
   return (
-    <div>
-      <img src={flags} alt={name} />
+    <div className={styles.conteiner}>
+      <img src={flags} alt={name} width={200}/>
       <p>Country Name: {name}</p>
-      <NavLink to={`/detail/${id}`}>detalles</NavLink>
+      <NavLink id={styles.detalles} to={`/detail/${id}`}><b>Details</b></NavLink>
     </div>
   );
 };

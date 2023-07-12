@@ -1,0 +1,77 @@
+.conteiner{
+    text-align: center;
+}
+#parrafo{
+    font-size: 20px;
+    color: white;
+    width: 400px;
+    margin-left: 37%;
+}
+.conteiner input{
+    font-size: 20px;
+    padding: 16px;
+    width: 400px;
+    vertical-align: middle;
+}
+.conteiner input:focus{
+    outline: none;
+}
+#buttonSearch{
+    all: unset;
+    padding: 19px;
+    vertical-align: middle;
+    background-color: rgb(6,7,48);
+    color: white;
+    border: 2px solid white;
+}
+#buttonSearch:hover{
+    background-color: rgb(39, 40, 108);
+    cursor: pointer;
+}
+#crearActividad{
+    margin-top: -50px;
+    margin-left: 50px;
+    float: left;
+}
+#listaActividades{
+    margin-top: -60px;
+    margin-right: 50px;
+    float: right;
+}
+.buttonActivities{
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(6,7,48);
+    padding: 10px;
+}
+.buttonActivities:hover{
+    background-color: rgb(39, 40, 108);
+}
+.orderSelect{
+    padding: 10px;
+    margin-right: 10px;
+}
+.buttonsPages{
+    all: unset;
+    color: white;
+    background-color: rgb(6,7,48);
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    padding: 10px;
+    border: 2px solid white;
+    vertical-align: middle;
+}
+.buttonsPages:hover{
+    background-color: rgb(39, 40, 108);
+    cursor: pointer;
+}
+#page{
+    display: inline;
+    background-color: white;
+    font-size: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -10px;
+}
