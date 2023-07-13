@@ -1,0 +1,30 @@
+.conteiner{
+    margin-top: 50px;
+    background-color: white;
+    text-align: center;
+    height: 100vh;
+}
+.fondo{
+    text-align: center;
+}
+.activities{
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    justify-content: space-between;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+.activity{
+    border: 5px solid rgb(6,7,48);
+    padding: 20px;
+    box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
+}
+#nombre{
+    background-color: rgb(6,7,48);
+    color: white;
+    padding: 10px;
+}

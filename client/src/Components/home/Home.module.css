@@ -12,13 +12,14 @@
     padding: 16px;
     width: 400px;
     vertical-align: middle;
+    border: none;
 }
 .conteiner input:focus{
     outline: none;
 }
 #buttonSearch{
     all: unset;
-    padding: 19px;
+    padding: 17px;
     vertical-align: middle;
     background-color: rgb(6,7,48);
     color: white;
@@ -49,8 +50,13 @@
     background-color: rgb(39, 40, 108);
 }
 .orderSelect{
+    border: 3px solid rgb(6,7,48);
+    margin-top: 20px;
     padding: 10px;
     margin-right: 10px;
+}
+.orderSelect:hover{
+    border: 3px solid rgb(39, 40, 108);
 }
 .buttonsPages{
     all: unset;

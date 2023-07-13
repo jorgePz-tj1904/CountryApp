@@ -119,15 +119,13 @@ const Home = () => {
 
         <select className={styles.orderSelect} onChange={continentsHandler}>
           <option selected disabled hidden>Filter by continent</option>
-          {continents.map((continent) => (
-            <option key={continent} value={continent}>{continent}</option>
-          ))}
+          {continents.map((continent) => (<option key={continent} value={continent}>{continent}</option>))}
         </select>
         <Cards country={countriesToShow}/>
         <div>
-          <button className={styles.buttonsPages} onClick={prevPage} disabled={currentPage === 1}>Página anterior</button>
+          <button className={styles.buttonsPages} onClick={prevPage} disabled={currentPage === 1}>Prev page</button>
           <h1 id={styles.page}>{currentPage}</h1>
-          <button className={styles.buttonsPages} onClick={nextPage} disabled={currentPage === Math.ceil(countries.length / perPage)}>Página siguiente</button>
+          <button className={styles.buttonsPages} onClick={nextPage} disabled={currentPage === Math.ceil(countries.length / perPage)}>Next page</button>
         </div>
       </div>
     </>

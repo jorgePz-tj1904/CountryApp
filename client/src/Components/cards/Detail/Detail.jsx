@@ -26,13 +26,15 @@ const Detail = () => {
     try {
       const action = event.target.value;
       if (action === 'next') {
-        const response = await axios.get(`http://localhost:3001/countries/detail?id=${parseInt(countryId)+1}`);
-        setCountryId(countryId+1)
+        const nextId = parseInt(countryId)+1;
+        const response = await axios.get(`http://localhost:3001/countries/detail?id=${nextId}`);
+        setCountryId(nextId.toString());
         return setCountry(response.data);
       }
       if (action === 'prev') {
-        const response = await axios.get(`http://localhost:3001/countries/detail?id=${parseInt(countryId)-1}`);
-        setCountryId(countryId-1)
+        const prevId = parseInt(countryId)-1
+        const response = await axios.get(`http://localhost:3001/countries/detail?id=${prevId}`);
+        setCountryId(prevId.toString())
         return setCountry(response.data);
       }
     } catch (error) {
@@ -51,18 +53,18 @@ const Detail = () => {
 
   return (
     <div className={styles.fondo}>
+      <NavLink to='/home'><img src="https://i.ibb.co/rm30PZt/My-project-1-1.png" width={200}/></NavLink>
       <div className={styles.conteiner}>
         <h1 id={styles.nombre}>{name}</h1>
-        <h5>Capital:  {capital}</h5>
-        <h5>Subregion:  {subregion}</h5>
-        <h5>Area:  {area}</h5>
-        <img src={flags} alt={name}/>
+        <h5><b>Capital:  </b>{capital}</h5>
+        <h5><b>Subregion:  </b>{subregion}</h5>
+        <h5><b>Area:  </b>{area}</h5>
         <button className={styles.navButtons} id={styles.prev} onClick={changeCountry} value='prev'>Prev</button>
         <button className={styles.navButtons} id={styles.next} onClick={changeCountry} value='next'>Next</button>
-        <h5>Population:  {population}</h5>
-        <h5>Continents:  {continents}</h5>
+        <h5><b>Population:  </b>{population}</h5>
+        <h5><b>Continents:  </b>{continents}</h5>
+        <img src={flags} alt={name}/>
       </div>
-      <NavLink to='/home'>volver</NavLink>
     </div>
   );
 };
