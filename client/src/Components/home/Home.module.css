@@ -2,10 +2,14 @@
     text-align: center;
 }
 #parrafo{
+    margin-top: 280px;
     font-size: 20px;
     color: white;
     width: 400px;
-    margin-left: 37%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .conteiner input{
     font-size: 20px;
@@ -35,7 +39,7 @@
     float: left;
 }
 #listaActividades{
-    margin-top: -60px;
+    margin-top: -70px;
     margin-right: 50px;
     float: right;
 }
@@ -58,6 +62,9 @@
 .orderSelect:hover{
     border: 3px solid rgb(39, 40, 108);
 }
+#order{
+    width: 150px;
+}
 .buttonsPages{
     all: unset;
     color: white;
@@ -76,8 +83,45 @@
 #page{
     display: inline;
     background-color: white;
-    font-size: 35px;
+    font-size: 30px;
     padding-left: 20px;
     padding-right: 20px;
     margin-top: -10px;
+}
+
+@media screen and (max-width:540px){
+    .conteiner input{
+        width: 200px;
+    }
+    #crearActividad{
+        margin-top: 20px;
+        margin-left: 10px;
+        font-size: 13px;
+        width: 95px;
+        padding: 5px;
+    }
+    #listaActividades{
+        margin-top: 0px;
+        margin-right: 10px;
+    }
+    #parrafo{
+        width: 200px;
+        margin-top: 50px;
+    }
+    #order{
+        margin-top: 200px;
+        width: 100px;
+    }
+
+}
+@media screen and (max-width:990px) and (min-width: 540px){
+    #crearActividad{
+        margin-top: 20px;
+    }
+    #listaActividades{
+        margin-top: -5px;
+    }
+    #parrafo{
+        margin-top: 200px;
+    }
 }

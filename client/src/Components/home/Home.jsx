@@ -109,7 +109,7 @@ const Home = () => {
         <NavLink className={styles.buttonActivities} id={styles.listaActividades} to='/activities'>Activities list</NavLink>
         <p id={styles.parrafo}>Search, explore, learn about the capitals, sub-regions and continents.</p>
 
-        <select className={styles.orderSelect}  onChange={orderHandler}>
+        <select id={styles.order} className={styles.orderSelect}  onChange={orderHandler}>
           <option selected disabled hidden>Order</option>
           <option value="ASC-alf">Order alphabetically ASC</option>
           <option value="DESC-alf">Order alphabetically DESC</option>
@@ -117,7 +117,7 @@ const Home = () => {
           <option value="DESC-pop">Sort by population DESC</option>
         </select>
 
-        <select className={styles.orderSelect} onChange={continentsHandler}>
+        <select id={styles.continents} className={styles.orderSelect} onChange={continentsHandler}>
           <option selected disabled hidden>Filter by continent</option>
           {continents.map((continent) => (<option key={continent} value={continent}>{continent}</option>))}
         </select>
