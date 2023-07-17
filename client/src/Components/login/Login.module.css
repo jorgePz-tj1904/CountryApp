@@ -19,7 +19,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     border-bottom: 4px solid white;
-  }
+}
 .welcome{
     position: absolute;
     color: white;
@@ -47,12 +47,32 @@ body{
     padding: 13px;
 }
 #linkedin{
-    margin-top: 40%;
+    margin-top: 600px;
     float: left;
     margin-left: 2%;
 }
 #git{
-    margin-top: 40%;
+    margin-top: 600px;
     float: right;
     margin-right: 2%;
+}
+
+@media screen and (max-width:900px) {
+    #logo{
+        width: 200px;
+    }
+    .welcome{
+        font-size: 15px;
+        width: 300px;
+    }
+    .buttom{
+        margin-top: 600px;
+        font-size: 30px;
+    }
+    #linkedin{
+        width: 50px;
+    }
+    #git{
+        width: 50px;
+    }
 }

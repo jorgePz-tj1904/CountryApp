@@ -9,6 +9,7 @@ import styles from './Home.module.css'
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [continents, setContinents] = useState([]);
+  const [error, setError] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(10);
 
@@ -24,21 +25,26 @@ const Home = () => {
         setCountries(response.data);
         const uniqueContinents = Array.from(new Set(response.data.map(country => country.continents)));
         setContinents(uniqueContinents);
+        const activities = await axios.get('http://localhost:3001/countries/activities');
+        if (Array.isArray(activities.data)) {
+        setActivities(activities.data);
+        }
         console.log('200 OK');
       } catch (error) {
         console.log('No se puede obtener los países:', error);
       }
     };
-
     fetchData();
   }, []);
 
   const onSearch = async (name) => {
     try {
       const response = await axios.get(`http://localhost:3001/countries/search?name=${name}`);
+      setError(false)
       setCountries(response.data);
     } catch (error) {
-      alert('No se encontró el país ingresado.');
+      setError(true);
+      setCountries([])
       console.log(error);
     }
   };
@@ -121,11 +127,10 @@ const Home = () => {
           <option selected disabled hidden>Filter by continent</option>
           {continents.map((continent) => (<option key={continent} value={continent}>{continent}</option>))}
         </select>
-
+        {error===true?(<div id={styles.error}><img src="https://i.ibb.co/C6gq61x/icons8-nada-encontrado-100.png" alt="icons8-nada-encontrado-100" border="0"/> <h3>Country not found</h3></div>):null}
         {countries.length === 0 ? (
         <div className={styles.loadingContainer}>
         <img id={styles.cargando} width={200} src="https://i.ibb.co/ky8LyRJ/cargando.gif" alt="cargando" border="0" /></div>) : null}
-
         <Cards country={countriesToShow}/>
         <div>
           <button className={styles.buttonsPages} onClick={prevPage} disabled={currentPage === 1}>Prev page</button>

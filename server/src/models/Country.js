@@ -12,4 +12,3 @@ module.exports = (sequelize) => {
     continents: { type: DataTypes.STRING, allowNull: false }
   });
 };
-

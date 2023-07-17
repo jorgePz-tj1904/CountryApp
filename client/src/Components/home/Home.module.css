@@ -98,7 +98,13 @@
     align-items: center;
     height: 100%;
 }
-
+#error{
+    margin-top: 100px;
+    text-align: center;
+}
+#error h3{
+    color: white;
+}
 @media screen and (max-width:540px){
     .conteiner input{
         width: 150px;
@@ -119,8 +125,9 @@
         margin-top: 300px;
     }
     #order{
+        margin-left: -38px;
         margin-top: 200px;
-        width: 100px;
+        width: 170px;
     }
 
 }

@@ -29,6 +29,7 @@ const Activities=()=>{
                 <h4>Difficulty:  {activity.dificultad}</h4>
                 <h4>Duration:  {activity.duracion}</h4>
                 <h4>Season:  { activity.temporada}</h4>
+                <h4>Country: {activity.Countries}</h4>
               </div>
             ))
           ) : (
