@@ -42,3 +42,20 @@
 #nombre{
     border-bottom: 5px solid rgb(6,7,48);
 }
+
+@media screen and (max-width:455px){
+    .navButtons{
+        font-size: 15px;
+    }
+    #prev{
+        float: left;
+        margin-left: 20px;
+    }
+    #next{
+        float: right;
+        margin-right: 20px;
+    }
+    #nombre{
+        font-size: 25px;
+    }
+}

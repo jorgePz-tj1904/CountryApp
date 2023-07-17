@@ -7,7 +7,7 @@
     color: white;
     width: 400px;
     position: absolute;
-    top: 10%;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -88,10 +88,20 @@
     padding-right: 20px;
     margin-top: -10px;
 }
+#cargando{
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 @media screen and (max-width:540px){
     .conteiner input{
-        width: 200px;
+        width: 150px;
     }
     #crearActividad{
         margin-top: 20px;
@@ -106,7 +116,7 @@
     }
     #parrafo{
         width: 200px;
-        margin-top: 50px;
+        margin-top: 300px;
     }
     #order{
         margin-top: 200px;
@@ -122,6 +132,6 @@
         margin-top: -5px;
     }
     #parrafo{
-        margin-top: 200px;
+        margin-top: 300px;
     }
 }

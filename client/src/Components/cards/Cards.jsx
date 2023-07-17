@@ -5,11 +5,12 @@ const Cards=({country})=>{
     return(
         <>
         <div className={styles.conteiner}>
-        {country.map(({id,name,flags}) => (
+        {country.map(({id,name,flags, continents}) => (
         <Card 
           id={id}
           name={name}
           flags={flags}
+          continents={continents}
         />
       ))}
         </div>

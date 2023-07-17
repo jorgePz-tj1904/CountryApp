@@ -11,6 +11,7 @@ const router = Router();
 router.get('/', async(req,res)=>{
     try {
     const list = await getApiData();
+
     res.status(200).send(list);
   } catch (error) {
     console.error(error);

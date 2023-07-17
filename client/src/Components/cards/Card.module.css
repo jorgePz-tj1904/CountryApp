@@ -3,7 +3,7 @@
     padding: 15px;
     margin-top: 40px;
     max-width: 200px;
-    height: 220px;
+    height: 240px;
 }
 .conteiner img{
     box-shadow: 0px 0px 41px 0px rgba(0,0,0,0.75);
@@ -11,16 +11,18 @@
     -moz-box-shadow: 0px 0px 41px 0px rgba(0,0,0,0.75);
 }
 #detalles{
-    position: absolute;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 200px;
     color: white;
     background-color: rgb(39, 40, 108);
     padding: 5px;
     font-size: 20px;
-    margin-left: -15%;
 }
 #nombre{
     margin-top: 10px;
     border-bottom: 2px solid rgb(39, 40, 108);
+}
+#continente{
+    margin-top: -20px;
+    margin-bottom: 10px;
 }

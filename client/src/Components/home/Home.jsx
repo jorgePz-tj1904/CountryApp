@@ -121,6 +121,11 @@ const Home = () => {
           <option selected disabled hidden>Filter by continent</option>
           {continents.map((continent) => (<option key={continent} value={continent}>{continent}</option>))}
         </select>
+
+        {countries.length === 0 ? (
+        <div className={styles.loadingContainer}>
+        <img id={styles.cargando} width={200} src="https://i.ibb.co/ky8LyRJ/cargando.gif" alt="cargando" border="0" /></div>) : null}
+
         <Cards country={countriesToShow}/>
         <div>
           <button className={styles.buttonsPages} onClick={prevPage} disabled={currentPage === 1}>Prev page</button>
