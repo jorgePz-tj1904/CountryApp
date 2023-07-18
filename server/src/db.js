@@ -5,15 +5,9 @@ const fs = require('fs');
 const path = require('path');
 const {DB_USER, DB_PASSWORD, DB_HOST, } = process.env;
 
-const sequelize = new Sequelize(`postgres://default:rXKvJ9R6OLbx@ep-super-tooth-923414.us-east-1.postgres.vercel-storage.com:5432/verceldb`,  {
-  logging: false,
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  }
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
+  logging: false, 
+  native: false, 
 });
 const basename = path.basename(__filename);
 

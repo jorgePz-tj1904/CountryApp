@@ -6,7 +6,7 @@ let loadData = null;
 const getApiData = async () => {
   try {
     if (loadData == null) {
-      const response = await axios('https://restcountries.com/v3.1/all');
+      const response = await axios('http://localhost:5000/countries');
       const countries = response.data;
       const countriesToCreate = countries.map((country) => {
         const { name, capital, subregion, area, flags, population, continents } = country;
