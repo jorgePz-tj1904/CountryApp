@@ -109,6 +109,7 @@ const Home = () => {
   return (
     <>
       <div className={styles.conteiner}>
+        <NavLink id={styles.salir} to='/'><i class="fa-solid fa-right-from-bracket"></i></NavLink>
         <NavLink to='/home'><img src="https://i.ibb.co/rm30PZt/My-project-1-1.png" width={200}/></NavLink>
         <SearchBar onSearch={onSearch} />
         <NavLink className={styles.buttonActivities} id={styles.crearActividad} to='/create-activity'>Create tourist activity</NavLink><br />

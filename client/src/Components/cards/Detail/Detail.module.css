@@ -11,8 +11,14 @@
 -webkit-box-shadow: 0px 0px 17px 8px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 17px 8px rgba(0,0,0,0.75);
 }
-.conteiner h5{
+#detalles{
+    margin-top: 20px;
+}
+#detalles li{
+    border-bottom: 2px solid rgb(39, 40, 108);
     font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 .fondo{
     height: 100vh;
@@ -32,7 +38,7 @@
     text-decoration: none;
     background-color: rgb(6,7,48);
     padding: 10px;
-    margin-top: -150px;
+    margin-top: -100px;
     font-size: 30px;
 }
 .navButtons:hover{
@@ -42,7 +48,52 @@
 #nombre{
     border-bottom: 5px solid rgb(6,7,48);
 }
-
+#volver{
+    all: unset;
+    cursor: pointer;
+    border: 2px solid white;
+    padding: 10px;
+    color: white;
+    background-color: rgb(6,7,48);
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -55%;
+}
+#volver:hover{
+    background-color: rgb(39, 40, 108);
+}
+#buscar{
+    all: unset;
+    cursor: pointer;
+    float: left;
+    margin-top: -257px;
+    margin-left: 10%;
+    color: white;
+    padding: 15px;
+    background-color: rgb(6,7,48);
+    box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+}
+#buscar:hover{
+    background-color: rgb(39, 40, 108);
+}
+#maps{
+    all: unset;
+    cursor: pointer;
+    float: right;
+    margin-top: -257px;
+    margin-right: 10%;
+    color: white;
+    padding: 15px;
+    background-color: rgb(6,7,48);
+    box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px 7px rgba(0,0,0,0.75);
+}
+#maps:hover{
+    background-color: rgb(39, 40, 108);
+}
 @media screen and (max-width:455px){
     .navButtons{
         font-size: 15px;
@@ -57,5 +108,17 @@
     }
     #nombre{
         font-size: 25px;
+    }
+    #volver{
+        margin-left: -70%;
+        font-size: 13px;
+    }
+    #buscar{
+        margin-top: 50px;
+        float: none;
+    }
+    #maps{
+        margin-top: 100px;
+        float: none;
     }
 }

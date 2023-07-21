@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
     area: { type: DataTypes.FLOAT, allowNull: false },
     flags: { type: DataTypes.STRING, allowNull: false },
     population: { type: DataTypes.INTEGER, allowNull: false },
-    continents: { type: DataTypes.STRING, allowNull: false }
+    continents: { type: DataTypes.STRING, allowNull: false },
+    maps: { type: DataTypes.STRING, allowNull: false }
   });
 };

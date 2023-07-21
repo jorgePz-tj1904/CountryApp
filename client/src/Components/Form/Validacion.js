@@ -1,4 +1,4 @@
-const validateForm = (activityName, difficulty, duration, season, selectedCountry) => {
+const validateForm = (activityName, difficulty, duration, season, selectedCountry, url) => {
   const newErrors = {};
 
   if (activityName.trim() === "") {
@@ -19,6 +19,16 @@ const validateForm = (activityName, difficulty, duration, season, selectedCountr
 
   if (selectedCountry === 0) {
     newErrors.selectedCountry = "Please select a country";
+  }
+  if(!url){
+    newErrors.url = 'img url is required'
+  }else{
+    try {
+      const strUrl = new URL(url);
+
+    } catch (error) {
+      newErrors.url = 'The URL is not valid'
+    }
   }
 
   return newErrors;

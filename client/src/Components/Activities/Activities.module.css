@@ -4,6 +4,9 @@
     text-align: center;
     height: 100vh;
 }
+.conteiner h1{
+    border-bottom: 3px solid rgb(6,7,48);
+}
 .fondo{
     text-align: center;
 }
@@ -17,14 +20,53 @@
     margin-top: 20px;
 }
 .activity{
-    border: 5px solid rgb(6,7,48);
+    border: 3px solid rgb(6,7,48);
     padding: 20px;
     box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
 -webkit-box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 36px 5px rgba(0,0,0,0.75);
 }
+.activity h2{
+    border-bottom: 3px solid rgb(6,7,48);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 200px;
+}
 #nombre{
     background-color: rgb(6,7,48);
     color: white;
     padding: 10px;
+}
+#error{
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 50%;
+  margin-right: 50%;
+  transform: translate(-50%, -50%);
+}
+#borrar{
+    all: unset;
+    background-color: rgb(142, 1, 1);
+    padding: 5px;
+    color: white;
+    float: right;
+    cursor: pointer;
+    transition: .2s;
+}
+#borrar:hover{
+    background-color: red;
+}
+#volver{
+    all: unset;
+    cursor: pointer;
+    border: 2px solid white;
+    padding: 10px;
+    color: white;
+    background-color: rgb(6,7,48);
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -55%;
+}
+#volver:hover{
+    background-color: rgb(39, 40, 108);
 }

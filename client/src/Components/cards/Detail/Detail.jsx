@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams, useNavigate} from "react-router-dom";
 
 import styles from './Detail.module.css'
 
@@ -9,6 +8,7 @@ const Detail = () => {
   const { id } = useParams();
   const [countryId, setCountryId] = useState(id);
   const [country, setCountry] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onSearchById = async (id) => {
@@ -21,6 +21,10 @@ const Detail = () => {
     };
     onSearchById(id);
   }, [id]);
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const changeCountry=async(event)=>{
     try {
@@ -43,27 +47,36 @@ const Detail = () => {
   }
 
   if (!country) {
-    return <p>Cargando...</p>;
+    return <img id={styles.cargando} width={200} src="https://i.ibb.co/ky8LyRJ/cargando.gif" alt="cargando" border="0" />;
   }
   if (!country.name) {
     return <p>No se encontró el país con el ID especificado.</p>;
   }
 
-  const { name, capital, subregion, area, flags, population, continents } = country;
+  const { name, capital, subregion, area, flags, population, continents, maps} = country;
+  function searchOnGoogle() {
+    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(name)}`;
+    window.open(searchUrl, '_blank');
+  }
 
   return (
     <div className={styles.fondo}>
       <NavLink to='/home'><img src="https://i.ibb.co/rm30PZt/My-project-1-1.png" width={200}/></NavLink>
+      <button id={styles.volver} onClick={handleGoBack}>Go Back</button>
       <div className={styles.conteiner}>
         <h1 id={styles.nombre}>{name}</h1>
-        <h5><b>Capital:  </b>{capital}</h5>
-        <h5><b>Subregion:  </b>{subregion}</h5>
-        <h5><b>Area:  </b>{area}</h5>
         <button className={styles.navButtons} id={styles.prev} onClick={changeCountry} value='prev'>Prev</button>
         <button className={styles.navButtons} id={styles.next} onClick={changeCountry} value='next'>Next</button>
-        <h5><b>Population:  </b>{population}</h5>
-        <h5><b>Continents:  </b>{continents}</h5>
         <img src={flags} alt={name}/>
+        <ul id={styles.detalles}>
+          <li><b>Capital: {capital}</b></li>
+          <li><b>Subregion: {subregion}</b></li>
+          <li><b>Area: {area} km²</b></li>
+          <li><b>Population: {population}</b></li>
+          <li><b>Continents: {continents}</b></li>
+        </ul>
+        <a id={styles.maps} href={maps} target="blank">See on Google maps</a>
+        <button onClick={searchOnGoogle} id={styles.buscar}>Search on Google</button>
       </div>
     </div>
   );

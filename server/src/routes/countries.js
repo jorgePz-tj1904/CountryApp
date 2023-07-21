@@ -4,6 +4,7 @@ const {getActivities}=require('../controllers/getActivities');
 const {getCountryById}=require('../controllers/getCountrieById');
 const {getCountryByName}=require('../controllers/getCountrieByname');
 const {postActivity}=require('../controllers/postActivity');
+const {deleteActivity} = require('../controllers/deleteActivities');
 
 
 const router = Router();
@@ -11,7 +12,6 @@ const router = Router();
 router.get('/', async(req,res)=>{
     try {
     const list = await getApiData();
-
     res.status(200).send(list);
   } catch (error) {
     console.error(error);
@@ -59,8 +59,8 @@ router.get('/detail', async(req, res)=>{
 
 router.post('/post-activity', async (req, res)=>{
   try {
-    const {name, difficulty, duration, season, id} = req.body;
-    await postActivity(name, difficulty, duration, season, id);
+    const {name, difficulty, duration, season, id, img} = req.body;
+    await postActivity(name, difficulty, duration, season, id, img);
     res.status(200).send('todo 200ok');
   } catch (error) {
     console.error(error);
@@ -75,6 +75,16 @@ router.get('/activities', async (req, res)=>{
   } catch (error) {
     console.log(error);
     res.status(500).send('Error al cargar los datos.');
+  }
+});
+router.get('/delete-activity/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    await deleteActivity(id);
+    res.status(200).send('Actividad eliminada exitosamente');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error al eliminar la actividad: ' + error.message);
   }
 });
 

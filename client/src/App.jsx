@@ -1,6 +1,6 @@
 import Login from './Components/login/Login'
 import Home from './Components/home/Home';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import Detail from './Components/cards/Detail/Detail';
 import Form from './Components/Form/Form';
 import Activities from './Components/Activities/Activities';

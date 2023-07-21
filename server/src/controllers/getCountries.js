@@ -8,18 +8,21 @@ const getApiData = async () => {
     if (loadData == null) {
       const response = await axios('http://localhost:5000/countries');
       const countries = response.data;
+      
       const countriesToCreate = countries.map((country) => {
-        const { name, capital, subregion, area, flags, population, continents } = country;
+        const { name, capital, subregion, area, flags, population, continents, maps } = country;
         const commonName = name.common;
         const flagImg = flags.png;
         const continentName = continents[0];
+        const gMaps = maps.googleMaps;
         let capitalName = capital ? capital[0] : 'sin';
         let subregionName = subregion ? subregion : 'sin';
-        return { name: commonName, flags: flagImg, continents: continentName, capital: capitalName, subregion: subregionName, area, population };
+        return { name: commonName, flags: flagImg, continents: continentName, capital: capitalName, subregion: subregionName, area, population, maps: gMaps};
       });
       await Countries.bulkCreate(countriesToCreate);
       loadData = countries;
     }
+
     const listCountries = await Countries.findAll();
     const countriesArray = listCountries.map((country) => country.toJSON());
     return countriesArray;

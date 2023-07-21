@@ -105,6 +105,23 @@
 #error h3{
     color: white;
 }
+#salir{
+    all: unset;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+    margin-left: 50%;
+    font-size: 30px;
+    color: white;
+    background-color: rgb(142, 1, 1);
+    padding: 10px;
+    position: absolute;
+    border-radius: 10px;
+    transition: .3s;
+}
+#salir:hover{
+    background-color: red;
+}
 @media screen and (max-width:540px){
     .conteiner input{
         width: 150px;

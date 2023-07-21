@@ -5,8 +5,7 @@
 .conteiner{
     background-color: white;
     text-align: center;
-    margin-top: 50px;
-    height: 690px;
+    height: 800px;
 }
 .conteiner h1{
     border-bottom: 4px solid rgb(39, 40, 108);
@@ -89,4 +88,29 @@
 }
 .error{
     color: red;
+}
+#other{
+    all: unset;
+    cursor: pointer;
+    margin-top: 40px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(39, 40, 108);
+}
+#other:hover{
+    background-color: rgb(78, 80, 206);
+}
+#volver{
+    all: unset;
+    cursor: pointer;
+    border: 2px solid white;
+    padding: 10px;
+    color: white;
+    background-color: rgb(6,7,48);
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -55%;
+}
+#volver:hover{
+    background-color: rgb(39, 40, 108);
 }
