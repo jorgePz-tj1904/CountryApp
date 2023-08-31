@@ -53,7 +53,7 @@ const Detail = () => {
     return <p>No se encontró el país con el ID especificado.</p>;
   }
 
-  const { name, capital, subregion, area, flags, population, continents, maps} = country;
+  const { name, capital, subregion, area, flags, population, continents, maps, Activities} = country;
   function searchOnGoogle() {
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(name)}`;
     window.open(searchUrl, '_blank');
@@ -74,6 +74,7 @@ const Detail = () => {
           <li><b>Area: {area} km²</b></li>
           <li><b>Population: {population}</b></li>
           <li><b>Continents: {continents}</b></li>
+          <li><b>Activities: {Activities.length === 0 ? 'no activities' : Activities.map(act=> `${act.nombre}. `)}</b></li>
         </ul>
         <a id={styles.maps} href={maps} target="blank">See on Google maps</a>
         <button onClick={searchOnGoogle} id={styles.buscar}>Search on Google</button>

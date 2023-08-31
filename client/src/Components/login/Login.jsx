@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from './Login.module.css'
 
-const Login=()=>{
+const Login=()=>{   
     return(
         <>
         <div className={styles.conteiner}>

@@ -1,111 +1,90 @@
-import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCountries, searchCountry, orderCountries, filterByContinent, getContinents, getActivities, getCountriesByAct} from '../../redux/actionCountries';
+import { NavLink } from "react-router-dom";
+
 import Cards from "../cards/Cards";
 import SearchBar from "./SearchBar";
 
 import styles from './Home.module.css'
-
 const Home = () => {
-  const [countries, setCountries] = useState([]);
-  const [continents, setContinents] = useState([]);
-  const [error, setError] = useState([]);
+  const countries = useSelector(state => state.countries);
+  const continents = useSelector(state=> state.continents);
+  const activities = useSelector(state=> state.activities);
+  const [error, setError] = useState(null)
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage] = useState(10);
-
-
+  const perPage = 10;
   const indexOfLastCountry = currentPage * perPage;
   const indexOfFirstCountry = indexOfLastCountry - perPage;
-  const countriesToShow = countries.slice(indexOfFirstCountry, indexOfLastCountry);
-
+  const countriesToShow = countries.length > 0 ? countries.slice(indexOfFirstCountry, indexOfLastCountry) : [];
+  
+  
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/countries');
-        setCountries(response.data);
-        const uniqueContinents = Array.from(new Set(response.data.map(country => country.continents)));
-        setContinents(uniqueContinents);
-        const activities = await axios.get('http://localhost:3001/countries/activities');
-        if (Array.isArray(activities.data)) {
-        setActivities(activities.data);
-        }
-        console.log('200 OK');
-      } catch (error) {
-        console.log('No se puede obtener los países:', error);
-      }
-    };
-    fetchData();
-  }, []);
+      dispatch(fetchCountries());
+      dispatch(getContinents());
+      dispatch(getActivities());
 
+      return ()=>{
+        dispatch(fetchCountries());
+        console.log('se desmonto home');
+      }
+  }, []);
+  
   const onSearch = async (name) => {
     try {
-      const response = await axios.get(`http://localhost:3001/countries/search?name=${name}`);
+      dispatch(searchCountry(name));
+      setCurrentPage(1)
       setError(false)
-      setCountries(response.data);
     } catch (error) {
-      setError(true);
-      setCountries([])
+      setError(true)
       console.log(error);
     }
   };
-
-  const orderHandler = async (event) => {
+  
+  const orderHandler = (event) => {
     try {
       const order = event.target.value;
-      let orderedCountries = [];
-      
-      switch (order) {
-        case 'ASC-alf':
-          orderedCountries = [...countries].sort((a, b) => a.name.localeCompare(b.name));
-          break;
-  
-        case 'DESC-alf':
-          orderedCountries = [...countries].sort((a, b) => b.name.localeCompare(a.name));
-          break;
-  
-        case 'ASC-pop':
-          orderedCountries = [...countries].sort((a, b) => a.population - b.population);
-          break;
-  
-        case 'DESC-pop':
-          orderedCountries = [...countries].sort((a, b) => b.population - a.population);
-          break;
-  
-        default:
-          break;
-      }
-      
-      setCountries(orderedCountries);
+      dispatch(orderCountries(order));
+      setCurrentPage(1)
     } catch (error) {
       console.log(error);
     }
   };
-
   const continentsHandler = async (event) => {
     try {
       const continent = event.target.value;
-      const response = await axios.get(`http://localhost:3001/countries/continent?continent=${continent}`);
-      if (Array.isArray(response.data)) {
-        setCountries(response.data);
-      }
-      console.log('no es un arr:', response.data);
+      dispatch(filterByContinent(continent));
+      setCurrentPage(1)
     } catch (error) {
       console.log(error);
     }
   };
-  const totalPages = Math.ceil(countries.length / perPage);
 
+  const countriesByActHandler=async(event)=>{
+    try {
+      const activityName = event.target.value;
+      dispatch(getCountriesByAct(activityName));
+      setCurrentPage(1)
+    } catch (error) {
+      console.log('no se pudieron filtrar los paises', error);
+    }
+  }
+
+  
+  const totalPages = Math.ceil(countries.length / perPage);
+  
   const nextPage=()=>{
     if(currentPage < totalPages){
-        setCurrentPage(currentPage + 1);
+      setCurrentPage(currentPage +1);
     }
   };
   const prevPage=()=>{
     if(currentPage > 1){
-        setCurrentPage(currentPage - 1);
+      setCurrentPage(currentPage -1);
     }
   };
-
   return (
     <>
       <div className={styles.conteiner}>
@@ -128,6 +107,13 @@ const Home = () => {
           <option selected disabled hidden>Filter by continent</option>
           {continents.map((continent) => (<option key={continent} value={continent}>{continent}</option>))}
         </select>
+
+        <select onChange={countriesByActHandler}  className={styles.orderSelect}>
+        <option selected disabled hidden>Filter by Activity</option>
+        {activities.length ===0? <option disabled>no activities</option>:null }
+        {activities.map((act)=>(<option key={act.id} value={act.nombre}>{act.nombre}</option>))}
+        </select>
+
         {error===true?(<div id={styles.error}><img src="https://i.ibb.co/C6gq61x/icons8-nada-encontrado-100.png" alt="icons8-nada-encontrado-100" border="0"/> <h3>Country not found</h3></div>):null}
         {countries.length === 0 ? (
         <div className={styles.loadingContainer}>

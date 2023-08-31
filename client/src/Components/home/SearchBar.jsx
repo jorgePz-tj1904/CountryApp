@@ -22,7 +22,7 @@ const SearchBar=({onSearch})=>{
         <>
         <div>
             <input onChange={handleChange} onKeyDown={handleKeyDown} value={name} type="text" placeholder="search countries here"/>
-            <button id={styles.buttonSearch} onClick={handleSearch}><b>Search</b></button>
+            <button id={styles.buttonSearch} onClick={handleSearch}><img src="https://i.ibb.co/1LBwHRV/icons8-b-squeda-100.png" alt="icons8-b-squeda-100" border="0" width={40}/></button>
         </div>
         </>
     )

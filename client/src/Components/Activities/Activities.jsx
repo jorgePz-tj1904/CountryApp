@@ -42,7 +42,7 @@ const Activities = () => {
       <div className={styles.conteiner}>
         <h1>Activities:</h1>
         <div className={styles.activities}>
-          {Activities.length === 0 ? (<div id={styles.error}><img src="https://i.ibb.co/Ldp5L6f/icons8-nada-encontrado-100-1.png" alt="icons8-nada-encontrado-100" border="0"/> <h3>no activities</h3></div>): null}
+          {Activities.length === 0 ? (<div id={styles.error}><img src="https://i.ibb.co/Ldp5L6f/icons8-nada-encontrado-100-1.png" alt="icons8-nada-encontrado-100" border="0"/> <h3>No activities</h3></div>): null}
           {Activities ? (
             Activities.map((activity) => (
               <ul className={styles.activity} key={activity.id}>

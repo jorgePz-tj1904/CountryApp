@@ -3,36 +3,41 @@ import axios from "axios";
 import styles from './Form.module.css'
 import { NavLink, useNavigate} from "react-router-dom";
 import validateForm from "./Validacion";
+import { useSelector, useDispatch } from 'react-redux';
+import {fetchCountries} from '../../redux/actionCountries'
 
 const Form=()=>{
-    const [countries, setCountries] = useState([]);
+    const countries = useSelector(state => state.countries);
     const [activityName, setActivityName] = useState("");
     const [difficulty, setDifficulty] = useState(0);
     const [duration, setDuration] = useState(0);
     const [season, setSeason] = useState("");
     const [selectedCountry, setSelectedCountry] = useState(0);
+    const [orderedCountries, setOrderedCountries] = useState([])
     const [url , setUrl] = useState('')
     const [done, setDone] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        const homeCountries=async()=>{
-            try {
-                const response = await axios.get('http://localhost:3001/countries');
-                const orderedCountries = [...response.data].sort((a, b) => a.name.localeCompare(b.name));
-                setCountries(orderedCountries);
-                console.log(response.data);
+    const dispatch = useDispatch();
 
-                setActivityName("");
-                setDifficulty(0);
-                setDuration(0);
-                setSeason("");
-                setSelectedCountry(0);
-            } catch (error) {
-                console.log('no se puede paaaa',error);
-            }
-        };
+    const homeCountries=async()=>{
+        try {
+            const orderCountries = [...countries].sort((a, b) => a.name.localeCompare(b.name));
+            setOrderedCountries(orderCountries)
+
+            setActivityName("");
+            setDifficulty(0);
+            setDuration(0);
+            setSeason("");
+            setSelectedCountry(0);
+        } catch (error) {
+            console.log('no se puede paaaa',error);
+        }
+    };
+
+    useEffect(()=>{
+        dispatch(fetchCountries());
         homeCountries();
     },[]);
 
@@ -58,13 +63,13 @@ const Form=()=>{
             setUrl('');
             setDone(true)
         } catch (error) {
-            console.log(error);
+            console.log('ya existe esta actividad');
         }
        }
     };
     const handleGoBack = () => {
         navigate(-1);
-      };
+    };
     return(
         <div className={styles.fondo}>
          <NavLink to='/home'><img src="https://i.ibb.co/rm30PZt/My-project-1-1.png" width={200}/></NavLink>
@@ -101,10 +106,11 @@ const Form=()=>{
                 <h4>URL de imagen</h4>
                 <input type="text" placeholder="URL" value={url} onChange={(event)=> setUrl(event.target.value)}/>
                 {errors.url && <p className={styles.error}>{errors.url}</p>}
+
                 <h4>Select country:</h4>
                 <select id={styles.paises} value={selectedCountry} onChange={(event) => setSelectedCountry(event.target.value)}>
                   <option value="" disabled hidden>Select country</option>
-                  {countries.map((country) => (
+                  {orderedCountries.map((country) => (
                   <option key={country.id} value={country.id}>{country.name}</option>
                    ))}
                 </select><br/>
