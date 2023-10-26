@@ -19,6 +19,7 @@ const Detail = () => {
         console.log(error);
       }
     };
+    console.log(id);
     onSearchById(id);
   }, [id]);
 
@@ -74,7 +75,7 @@ const Detail = () => {
           <li><b>Area: {area} km²</b></li>
           <li><b>Population: {population}</b></li>
           <li><b>Continents: {continents}</b></li>
-          <li><b>Activities: {Activities.length === 0 ? 'no activities' : Activities.map(act=> `${act.nombre}. `)}</b></li>
+          <li><b>Activities: {!Activities ? 'no activities' : Activities.map(act=> `${act.nombre}. `)}</b></li>
         </ul>
         <a id={styles.maps} href={maps} target="blank">See on Google maps</a>
         <button onClick={searchOnGoogle} id={styles.buscar}>Search on Google</button>
